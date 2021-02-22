@@ -6,6 +6,9 @@ function Game(){
   this.init()
   
   this.snake = new Snake()
+  // init food
+  this.food = new Food(this)
+
   this.start()
   this.bindEvent()
 }
@@ -30,6 +33,11 @@ Game.prototype.init = function() {
 // set table color
 Game.prototype.setColor = function(row, col, color) {
   this.dom.getElementsByTagName("tr")[row].getElementsByTagName("td")[col].style.background = color
+}
+
+// render food
+Game.prototype.setHTML = function (row, col, html) {
+  this.dom.getElementsByTagName("tr")[row].getElementsByTagName("td")[col].innerHTML = html
 }
 
 Game.prototype.bindEvent = function(){
@@ -75,6 +83,7 @@ Game.prototype.start = function() {
     game.clean()
     game.snake.update()
     game.snake.render()
+    game.food.render()
   }, 400)
 }
 
