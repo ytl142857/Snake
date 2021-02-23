@@ -73,6 +73,7 @@ Game.prototype.clean = function() {
     for (let j=0; j<this.col;j++){
       //this.dom.getElementsByTagName("tr")[i].getElementsByTagName("td")[j].style.background = 'white'
       this.setColor(i, j, 'white')
+      this.dom.getElementsByTagName("tr")[i].getElementsByTagName("td")[j].innerHTML = ""
     }
   }
 }

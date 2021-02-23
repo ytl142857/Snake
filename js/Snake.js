@@ -32,7 +32,7 @@ Snake.prototype.update = function() {
       this.body.unshift({"row": this.body[0].row-1, "col": this.body[0].col})
       break
   }
-  this.body.pop()
+  
   
   // 2. death
   // 2.1 out of table
@@ -49,6 +49,14 @@ Snake.prototype.update = function() {
       clearInterval(game.timer)
     }
   }
+
+  // 3. eat food
+  if(this.body[0].row == game.food.row && this.body[0].col == game.food.col) {
+    game.food = new Food(game)
+  } else {
+    this.body.pop()
+  }
+  
 }
 
 Snake.prototype.changeDirection = function(direction){
