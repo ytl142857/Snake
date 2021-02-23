@@ -53,6 +53,8 @@ Snake.prototype.update = function() {
   // 3. eat food
   if(this.body[0].row == game.food.row && this.body[0].col == game.food.col) {
     game.food = new Food(game)
+    game.f = 0
+    game.score++
   } else {
     this.body.pop()
   }

@@ -4,7 +4,7 @@ function Game(){
   this.col = 20
   // init dom
   this.init()
-  
+  this.score = 0
   this.snake = new Snake()
   // init food
   this.food = new Food(this)
@@ -79,12 +79,19 @@ Game.prototype.clean = function() {
 }
 
 Game.prototype.start = function() {
+  this.f = 0
+
   this.timer = setInterval(function(){
     // timer: clear -> update -> render
+    game.f++
+    document.getElementById("f").innerHTML = "Frame Number: " + game.f
+    document.getElementById("score").innerHTML = "Score: " + game.score
     game.clean()
-    game.snake.update()
+    // if snake eat food, speed++
+    let during = game.snake.body.length < 30 ? 30 -game.snake.body.length : 1
+    game.f % during == 0 && game.snake.update()
     game.snake.render()
     game.food.render()
-  }, 400)
+  }, 15)
 }
 
